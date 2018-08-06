@@ -1,0 +1,30 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:  
+  
+  - name: Build image using dockerfile
+    docker_image:
+      path: "{{playbook_dir}}"
+      name: lab_image
+      state: present
+  - name: run Nodes python file
+    script: "{{playbook_dir}}/Nodes.py"
+  - name: Read the Nodes.yml
+    include_vars:
+      file: "{{playbook_dir}}/Nodes.yaml"
+      name: names
+  - name: Spawning Containers
+    docker_container:
+      image: lab_image
+      name: "{{item}}"
+      state: started
+      hostname: "{{item}}"
+      privileged: yes
+      interactive: yes
+      tty: yes
+    with_items:
+      - "{{names.Nodes}}"
+  - name: Run csc-lab python file
+    command: python csc-lab.py
+  - name: Run Setup python file
+    command: sudo python Setup.py
