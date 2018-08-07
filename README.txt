@@ -7,9 +7,10 @@ Use your college Username and password to reserve a VM under Reservations Tab
 
 Click on New Reservation and select "Ubuntu 16.04 LTS Base" and Create Reservation
 
-1. Login into the VM and copy CSC573LAB file using below command:
+1. Login into the VM and copy CSC573LAB file using below command and change directory to CSC573LAB folder:
 
 	"git clone https://github.com/CSC573LAB/CSC573LAB.git"
+	             "cd CSC573LAB"
 
 2. Give permissions to docker-env.sh file in CSC573LAB folder by using the below command:
 
