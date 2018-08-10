@@ -7,7 +7,7 @@ HOST_IP=fip.read().strip()
 bg_file = open('background.sh', 'w')
 bg_file.close()
 bg_file = open('background.sh','a')  #opening file in append mode
-bg_file.write("#!/bin/bash"+"\n"+"#To Allow wireshark to access internal ports of hosts by adding iptable rules"+"\n"+"while true; do"+"\n"+"sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE")
+bg_file.write("#!/bin/bash"+"\n"+"#To Allow wireshark to access internal ports of hosts by adding iptable rules"+"\n"+"while true; do"+"\n"+"sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE"+"\n")
 #bg_file.write("\n")
 for i in topology_line:
 #To get docker IP using this command
