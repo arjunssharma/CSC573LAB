@@ -64,7 +64,7 @@ for i in topology_line:
 
     PORT_NO = portip.read().strip()
 
-    line4 = '{}      |         "ssh -X root@{} -p {} tcpdump -U -s0 -n -w - -i ethx | wireshark -k -i -" |'.format(i, HOST_IP, PORT_NO)
+    line4 = '{}      |        "ssh -X root@{} -p {} tcpdump -U -s0 -n -w - -i ethx | wireshark -k -i -" |'.format(i, HOST_IP, PORT_NO)
 
     result_file.write(line4 + "\n")
     result_file.write("         |                                                                                              |" + "\n")
