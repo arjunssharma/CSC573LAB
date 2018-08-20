@@ -5,7 +5,7 @@
 
 START=$(date +%s)
 echo -e "\n\n******Starting with environment setup******\n"
-
+sudo hostname localhost
 
 sudo add-apt-repository -y ppa:apt-fast/stable
 
