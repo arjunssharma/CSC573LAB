@@ -31,6 +31,12 @@ for i in topology_line:
     host_file.write(line3 + "\n")
 host_file.close()
 
+result_file = open('connection.txt','w')
+result_file.write("Host                  " + "IP" "\n")
+for i in topology_line:
+    dip = os.popen("docker inspect -f \'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\' " + i)
+    DOCKER_IP = dip.read().strip()
 
-
-
+    line3 = "{} "+"--------------->"+" {}".format(i, DOCKER_IP)
+    result_file.write(line3 + "\n")
+result_file.close()
