@@ -32,16 +32,16 @@ for i in topology_line:
 host_file.close()
 
 result_file = open('connection.txt','w')
-result_file.write("Host                  " + "IP"+"\n")
+result_file.write("Host                  " + "IP"+"\n\n")
 for i in topology_line:
     dip = os.popen("docker inspect -f \'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\' " + i)
     DOCKER_IP = dip.read().strip()
 
     line3 = "{}                  {}".format(i, DOCKER_IP)
-    result_file.write(line3 + "\n\n\n\n")
+    result_file.write(line3 + "\n\n")
 result_file.write("#Wireshark Connection Commands"+"\n")
-result_file.write("Use below commands to perform wireshark captures at any interface, Replace ethx with your interface name"+"\n")
-result_file.write("Host                  " + "Wireshark Command"+"\n")
+result_file.write("Use below commands to perform wireshark captures at any interface, Replace ethx with your interface name"+"\n\n")
+result_file.write("Host                  " + "Wireshark Command"+"\n\n")
 #"ssh -X root@152.46.19.96 -p 1702 tcpdump -U -s0 -n -w - -i eth1 | wireshark -k -i -"
 for i in topology_line:
     dip = os.popen("docker inspect -f \'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\' " + i)
@@ -49,5 +49,5 @@ for i in topology_line:
     portip = os.popen("docker inspect -f \'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\' " + i + "| cut -d \".\" -f 2-4 | awk -F. \'{print $1\"\"$2\"\"$3}\'")
     PORT_NO = portip.read().strip()
     line4 = '{}                  "ssh -X root@{} -p {} tcpdump -U -s0 -n -w - -i ethx | wireshark -k -i -"'.format(i, HOST_IP, PORT_NO)
-    result_file.write(line4 + "\n")
+    result_file.write(line4 + "\n\n")
 result_file.close()
