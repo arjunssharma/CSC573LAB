@@ -20,9 +20,7 @@ Click on New Reservation and select "Ubuntu 16.04 LTS Base" and Create Reservati
 
         "./docker-env.sh"
 
-4. You can access the Management IP of the PC’s (PC1, PC2, PC3, PC4) in sequence of 172.17.0.2 ..... 172.17.0.254 respectively.  The IP's are provided in seq
-
-   uence to names provided in matrix.txt file (PC1,PC2,PC3,PC4), these hosts would get (172.17.0.2, 172.17.0.3, 172.17.0.4, 172.17.0.5) respectively.
+4. You can access the Management IP of the PC’s (PC1, PC2, PC3, PC4) in sequence of 172.17.0.2 ..... 172.17.0.254 respectively.  The IP's are provided in sequence to names provided in matrix.txt file (PC1,PC2,PC3,PC4), these hosts would get (172.17.0.2, 172.17.0.3, 172.17.0.4, 172.17.0.5) respectively.
 
 5. You can login into the PC(PC1), Similary other PC's with username:root, password:passwd as below:
 
@@ -44,9 +42,9 @@ Please dont change any configuration related to eth0 in PC1, PC2, PC3, PC4 as yo
 
          "cd C:\Program Files\Wireshark"
 
-4. In the command prompt, To take wireshark capture at an interface(eth1) of a particular PC(PC1 - 172.17.0.2), the port number would be 1702(last four digit
+4. Open connection.txt file to view wireshark commands for respective PC.
 
-   s from its IP), similary for PC2 with 172.17.0.3 it would be 1703.
+5. In the command prompt, To take wireshark capture at an interface(eth1) of a particular PC(PC1 - 172.17.0.2), the port number would be 1702(last four digits from its IP), similary for PC2 with 172.17.0.3 it would be 1703.
 
 #Importantly we should use IP of the reserved host from VCL which is(in my case 152.46.19.96), the only parameter that varies for different PC's is the part 
 
@@ -55,8 +53,6 @@ Please dont change any configuration related to eth0 in PC1, PC2, PC3, PC4 as yo
 
          "ssh -X root@152.46.19.96 -p 1702 tcpdump -U -s0 -n -w - -i eth1 | wireshark -k -i -"
 
-5. After executing above command, You will see wireshark getting started in your laptop, Go to command prompt and provide password as "passwd" in command pro
-
-   mpt for wireshark to get access from the PC(PC1)
+6. After executing above command, You will see wireshark getting started in your laptop, Go to command prompt and provide password as "passwd" in command prompt for wireshark to get access from the PC(PC1)
 
 =============================================================================================================================================================
