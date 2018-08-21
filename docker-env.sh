@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#echo -e "\n## NOTE ## ---> ** Before running the script, switch to root user!**"
-
-
-START=$(date +%s)
 echo -e "\n\n******Starting with environment setup******\n"
 sudo hostname localhost
 
@@ -126,15 +122,7 @@ sudo sed -i -e 's/#group/group/g' /etc/libvirt/qemu.conf
 
 sudo service libvirtd restart
 
-
-
 ################################################# DOCKER SETUP HERE ONWARDS ###############################################
-
-
-
-
-
-
 
 echo -e "\n*********Setting up docker environment now!\n"
 
@@ -203,11 +191,11 @@ echo -e "\n**** Docker Installation done ****\n\n"
 
 echo -e "\n\n******Environment setup completed! ****\n"
 
-END1=$(date +%s)
-
-
+echo -e "\n\n******Creating Topology ****\n"
 
 sudo ansible-playbook /home/$(whoami)/CSC573LAB/Topology_script.yml
+echo -e "\n\n******Find the below connections at connection.txt file ****\n"
+cat connection.txt
 
 sed -i -e 's/\r$//' background.sh
 
@@ -215,13 +203,4 @@ chmod u+x background.sh
 
 ./background.sh &
 
-END2=$(date +%s)
-
-DIFF1=$(echo "$END1 - $START" | bc)
-
-DIFF=$(echo "$END2 - $START" | bc)
-
-
-
-echo "Environmental setup took DIFF=$DIFF1 seconds to complete..."
-echo "Total setup took DIFF=$DIFF seconds to complete..."
+echo "Total setup completed..."
