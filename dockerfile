@@ -15,4 +15,4 @@ RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 RUN ln -s /usr/bin/tcpdump /usr/sbin/tcpdump
 
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-RUN sysctl net.ipv4.ip_forward=0
+RUN echo 0 > /proc/sys/net/ipv4/ip_forward
