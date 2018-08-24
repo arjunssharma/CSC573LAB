@@ -10,6 +10,7 @@ RUN pip install paramiko
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
 RUN /usr/sbin/sshd
+RUN sysctl net.ipv4.ip_forward=0
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 RUN ln -s /usr/bin/tcpdump /usr/sbin/tcpdump
